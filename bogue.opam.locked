@@ -1,0 +1,71 @@
+opam-version: "2.0"
+name: "bogue"
+version: "20220104"
+synopsis: "GUI library for ocaml, with animations, based on SDL2"
+description: """\
+Bogue is an all-purpose GUI library for ocaml, with animations, based on SDL2.
+
+This library can be used for games or for adding GUI elements to any
+ocaml program.
+
+It uses the SDL2 renderer library, which makes it quite fast.
+
+It is themable, and does not try to look like your desktop. Instead,
+it will look the same on every platform.
+
+Graphics output is scalable, and hence easily adapts to Hi-DPI
+displays.
+
+Programming with bogue is easy if you're used to GUIs with widgets,
+layouts, callbacks, and of course it has a functional flavor. It uses
+Threads when non-blocking reactions are needed."""
+maintainer: "Vu Ngoc San <san.vu-ngoc@laposte.net>"
+authors: "Vu Ngoc San <san.vu-ngoc@laposte.net>"
+license: "ISC"
+tags: "gui"
+homepage: "https://github.com/sanette/bogue"
+doc: "http://sanette.github.io/bogue/Bogue.html"
+bug-reports: "https://github.com/sanette/bogue/issues"
+depends: [
+  "base-bigarray" {= "base"}
+  "base-threads" {= "base"}
+  "base-unix" {= "base"}
+  "bigarray-compat" {= "1.0.0"}
+  "conf-libffi" {= "2.0.0"}
+  "conf-pkg-config" {= "2"}
+  "conf-sdl2" {= "1"}
+  "conf-sdl2-image" {= "1"}
+  "conf-sdl2-ttf" {= "1"}
+  "csexp" {= "1.5.1"}
+  "ctypes" {= "0.20.0"}
+  "ctypes-foreign" {= "0.18.0"}
+  "dune" {= "2.9.1"}
+  "dune-configurator" {= "2.9.1"}
+  "integers" {= "0.5.1"}
+  "ocaml" {= "4.13.0"}
+  "ocaml-base-compiler" {= "4.13.0"}
+  "ocaml-config" {= "2"}
+  "ocaml-options-vanilla" {= "1"}
+  "ocamlbuild" {= "0.14.0"}
+  "ocamlfind" {= "1.9.1"}
+  "result" {= "1.5"}
+  "topkg" {= "1.0.4"}
+  "tsdl" {= "0.9.8"}
+  "tsdl-image" {= "0.3.2"}
+  "tsdl-ttf" {= "0.3.2"}
+]
+build: [
+  ["dune" "subst"] {dev}
+  [
+    "dune"
+    "build"
+    "-p"
+    name
+    "-j"
+    jobs
+    "@install"
+    "@runtest" {with-test}
+    "@doc" {with-doc}
+  ]
+]
+dev-repo: "git+https://github.com/sanette/bogue.git"
